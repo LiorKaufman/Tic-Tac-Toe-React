@@ -1,0 +1,17 @@
+.square{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+}
+.board-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 400px;
+    width: 400px;
+    border: 2px solid black;
+}
