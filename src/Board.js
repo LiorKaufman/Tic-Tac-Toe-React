@@ -2,46 +2,28 @@ import React from 'react';
 import './App.css';
 import Square from './Square'
 class Board extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            theBoard: [],
-        }
+
+    renderSquare = (i) => {
+        return (
+            <Square
+            onClick = {this.props.onClick}
+            value = {this.props.squares[i]}
+            />
+        )
     }
 
-    addSymbol = (e) => {
-        // console.log(`${e.target.getAttribute('id')}`);
-        console.log(e.target.getAttribute('name'));
-        let x = this.props.userTurn
-        if (e.target.innerHTML !== "") {
-
-        } else if (x) {
-            e.target.innerHTML = this.props.user1
-            this.props.setUserTurn()
-        } else if (!x) {
-            e.target.innerHTML = this.props.user2
-            this.props.setUserTurn(e)
-        }
-    }
-    popArray = () => {
-        let newArr = this.state.theBoard
-        for (let i = 0; i <9; i++) {
-            newArr.push(<Square
-                        addSymbol = { this.addSymbol }
-                        key       = { i }
-                        id        = { i }
-                        />)
-        }
-        this.setState({theBoard:newArr})
-    }
-    // var winCombos  =    [[0,1,2],[3,4,5][6,7,8],[0,3,6],[1,4,7],[2,5,8][0,4,8][2,4,6]]
-    componentDidMount() {
-        this.popArray()
-    }
     render(){
         return (
-            <div className='board-wrap'>
-                {this.state.theBoard}
+            <div>
+            <div className ='d-flex flex-wrap justify-contenet-center'>
+            {this.renderSquare(0)}{this.renderSquare(1)}{this.renderSquare(2)}
+            </div>
+            <div className ='d-flex flex-wrap justify-contenet-center'>
+            {this.renderSquare(3)}{this.renderSquare(4)}{this.renderSquare(5)}
+            </div>
+            <div className ='d-flex flex-wrap justify-contenet-center'>
+            {this.renderSquare(6)}{this.renderSquare(7)}{this.renderSquare(8)}
+            </div>
             </div>
         );
     }

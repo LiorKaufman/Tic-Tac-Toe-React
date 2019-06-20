@@ -4,15 +4,12 @@ import './App.css';
 
 class Square extends React.Component {
 
-    handleClick = (e) => {
-        this.props.addSymbol(e)
-    }
     render(){
         return (
             <div className ='square'
-            onClick = { this.handleClick }
-            name = {this.props.id}
+            onClick = {this.props.onClick}
             >
+            {this.props.value}
             </div>
         );
     }
