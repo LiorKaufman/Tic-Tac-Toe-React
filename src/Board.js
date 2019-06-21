@@ -8,6 +8,7 @@ class Board extends React.Component {
             <Square
             onClick = {this.props.onClick}
             value = {this.props.squares[i]}
+            name = {i}
             />
         )
     }
@@ -15,15 +16,15 @@ class Board extends React.Component {
     render(){
         return (
             <div>
-            <div className ='d-flex flex-wrap justify-contenet-center'>
-            {this.renderSquare(0)}{this.renderSquare(1)}{this.renderSquare(2)}
-            </div>
-            <div className ='d-flex flex-wrap justify-contenet-center'>
-            {this.renderSquare(3)}{this.renderSquare(4)}{this.renderSquare(5)}
-            </div>
-            <div className ='d-flex flex-wrap justify-contenet-center'>
-            {this.renderSquare(6)}{this.renderSquare(7)}{this.renderSquare(8)}
-            </div>
+                <div className ='d-flex flex-wrap justify-contenet-center'>
+                {this.renderSquare(0)}{this.renderSquare(1)}{this.renderSquare(2)}
+                </div>
+                <div className ='d-flex flex-wrap justify-contenet-center'>
+                {this.renderSquare(3)}{this.renderSquare(4)}{this.renderSquare(5)}
+                </div>
+                <div className ='d-flex flex-wrap justify-contenet-center'>
+                {this.renderSquare(6)}{this.renderSquare(7)}{this.renderSquare(8)}
+                </div>
             </div>
         );
     }
