@@ -13,7 +13,7 @@ class App extends React.Component {
             gameStatus: false,
             gameTurn: 0,
             history: Array(9).fill(""),
-            allHistory: []
+            allHistory: [Array(9).fill("")]
 
         }
     }
@@ -125,7 +125,7 @@ class App extends React.Component {
 
                 </ul>
             </div>
-    
+
         );
     }
 }
