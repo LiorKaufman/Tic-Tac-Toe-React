@@ -13,7 +13,7 @@ class App extends React.Component {
             gameStatus: false,
             gameTurn: 0,
             history: Array(9).fill(""),
-            allHistory: [Array(9).fill("")]
+            allHistory: [["","","","","","","","","",],]
 
         }
     }
@@ -24,27 +24,22 @@ class App extends React.Component {
         const turn = this.state.gameTurn
         const index = e.target.getAttribute('name')
         const value = e.target.innerHTML
-        const history = this.state.history
-        const allHistory = [...this.state.allHistory]
         const squares = this.state.squares
         const user = this.state.userTurn
-        for (let i = 0; i < squares.length; i++) {
-                history[i] = squares[i]
-
-        }
-        this.setState({history:history})
-        allHistory.push(history)
-
         if (value === "") {
             squares[index] = user ? 'X':'O'
             this.setState({
                 squares:squares,
                 userTurn: !user,
                 gameTurn: turn + 1,
-                allHistory: allHistory
             })
+
         }
-            this.checkWin()
+        let all = this.state.allHistory
+        all.push([].concat(this.state.squares))
+        this.setState({allHistory:all})
+        console.log(this.state.allHistory);
+        this.checkWin()
     }
 
     resetGame = () => {
@@ -56,30 +51,27 @@ class App extends React.Component {
             gameStatus: false,
             message: message,
             gameTurn: 0,
+            userTurn: true,
+            allHistory: [squares,]
         })
     }
     undoMove = () => {
-        const lastMove = this.state.history
-        const turn = this.state.gameTurn
-        const user = this.state.userTurn
-        // const allMoves = this.state.allHistory
-
-        // if (turn > 0) {
-        //     this.setState({gameTurn: turn -1,})
-        // } else {
-        //     this.setState({gameTurn:0})
-        // }
+      const allHistory = this.state.allHistory
+      const squares = this.state.squares
+      const gameTurn = this.state.gameTurn
+      const userTurn = this.state.userTurn
+      if (gameTurn > 1) {
         this.setState({
-            squares:lastMove,
-            userTurn: !user,
+          squares:allHistory[gameTurn-1],
+          gameTurn: gameTurn -1,
+          userTurn: !userTurn,
+          allHistory: allHistory.slice(0,gameTurn)
         })
-        const squares = this.state.squares
-        this.setState({history:squares})
+      } else if (gameTurn === 1) {
+        this.resetGame()
+      }
     }
 
-    goTo = () => {
-        const allHistory = this.state.allHistory
-    }
 
     checkWin = () => {
         const user = this.state.userTurn
@@ -103,12 +95,6 @@ class App extends React.Component {
     }
 
     render(){
-        const allHistory = this.state.allHistory
-        const moves = allHistory.map((step,move) => {
-            return <li key={move}>
-            <button onClick={() => this.goTo} >{step}</button>
-                </li>
-        })
         return (
             <div className='d-flex justify-content-center'>
                 <Board
@@ -121,7 +107,7 @@ class App extends React.Component {
                 {this.state.gameStatus && <button onClick={this.resetGame}>Reset Game </button>}
 
                 <ul>
-                    <li><button onClick={() => this.undoMove()}> Undo Last Move </button></li>
+                    {this.state.gameTurn > 0 && <li><button onClick={() => this.undoMove()}> Undo Last Move </button></li>}
 
                 </ul>
             </div>

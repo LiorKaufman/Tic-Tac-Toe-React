@@ -1,8 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
 import Square from './Square'
 class Board extends React.Component {
-
+  constructor(props){
+    super(props)
+    this.state = {
+      board: Array(9).fill(null)
+    }
+  }
     renderSquare = (i) => {
         return (
             <Square
@@ -14,17 +19,18 @@ class Board extends React.Component {
     }
 
     render(){
+      const board = this.state.board
+
         return (
-            <div>
-                <div className ='d-flex flex-wrap justify-contenet-center'>
-                {this.renderSquare(0)}{this.renderSquare(1)}{this.renderSquare(2)}
-                </div>
-                <div className ='d-flex flex-wrap justify-contenet-center'>
-                {this.renderSquare(3)}{this.renderSquare(4)}{this.renderSquare(5)}
-                </div>
-                <div className ='d-flex flex-wrap justify-contenet-center'>
-                {this.renderSquare(6)}{this.renderSquare(7)}{this.renderSquare(8)}
-                </div>
+
+            <div className="board-wrap">
+            {board.map((e,i) =>{
+              e = this.renderSquare(i)
+                return( <div key={i}>
+                        {e}
+                      </div>)
+            })
+              }
             </div>
         );
     }
