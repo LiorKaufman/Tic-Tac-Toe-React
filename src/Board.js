@@ -23,10 +23,10 @@ class Board extends React.Component {
 
         return (
 
-            <div className="board-wrap">
+            <div className="board">
             {board.map((e,i) =>{
               e = this.renderSquare(i)
-                return( <div key={i}>
+                return( <div key={i} className="">
                         {e}
                       </div>)
             })

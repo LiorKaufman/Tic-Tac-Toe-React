@@ -96,20 +96,27 @@ class App extends React.Component {
 
     render(){
         return (
-            <div className='d-flex justify-content-center'>
+            <div className='game'>
                 <Board
                 onClick = {this.handleClick}
                 squares = {this.state.squares}
                 />
-                <p>{"Winner: " + this.state.message}</p>
+                <div className='message'>
+                  <p>{"Winner: " + this.state.message}</p>
+                </div>
                 <br></br>
                 <p>{" Game turn: " + this.state.gameTurn}</p>
-                {this.state.gameStatus && <button onClick={this.resetGame}>Reset Game </button>}
+                {this.state.gameStatus && <button
+                   onClick={this.resetGame}
+                   className="btn btn-danger"
+                   >Reset Game </button>}
 
-                <ul>
-                    {this.state.gameTurn > 0 && <li><button onClick={() => this.undoMove()}> Undo Last Move </button></li>}
+                <div>
+                    {this.state.gameTurn > 0 && <button
+                      className="btn btn-success"
+                       onClick={() => this.undoMove()}> Undo Last Move </button>}
 
-                </ul>
+                </div>
             </div>
 
         );

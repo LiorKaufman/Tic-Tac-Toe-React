@@ -1,19 +1,29 @@
-.square{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    width: 100px;
-    border: 2px solid black;
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 306px;
+  position: absolute;
 }
-.board-wrap{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    height: 400px;
-    width: 400px;
-    border: 2px solid black;
-    padding: 0;
-    margin: 0;
+.squares {
+  display: flex;
+  border: solid 1px black;
+  width: 100px;
+  height:100px;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+.message{
+  margin-left: 450px;
+  left: 50%;
+}
+.game ul, .game p{
+  margin-top: 200px;
 }
